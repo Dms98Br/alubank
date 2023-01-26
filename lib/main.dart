@@ -14,7 +14,7 @@ class AluBank extends StatelessWidget {
     return MaterialApp(
       title: "AluBank",
       theme: MyTheme,
-      home: Home(),
+      home: const Home(),
     );
   }
 }
