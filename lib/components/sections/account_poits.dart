@@ -1,6 +1,7 @@
 import 'package:alubank/components/box_card.dart';
 import 'package:alubank/components/color_dot.dart';
 import 'package:alubank/components/content_division.dart';
+import 'package:alubank/data/bank_inherited.dart';
 import 'package:alubank/themes/theme_color.dart';
 import 'package:flutter/material.dart';
 
@@ -28,33 +29,43 @@ class AccountPoints extends StatelessWidget {
   }
 }
 
-class _AccountPoints extends StatelessWidget {
+class _AccountPoints extends StatefulWidget {
   const _AccountPoints({Key? key}) : super(key: key);
 
   @override
+  State<_AccountPoints> createState() => _AccountPointsState();
+}
+
+class _AccountPointsState extends State<_AccountPoints> {
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text("Pontos totais:"),
-        Text(
-          "3000",
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
-        const Padding(
-          padding: EdgeInsets.only(top: 8, bottom: 8),
-          child: ContentDivision(),
-        ),
-        const Text("Objetivos:"),
-        _ItemPoints(
-          color: ThemeColors.recentActivity['delivery'],
-          text: ' Entrega grátis: 1500pts',
-        ),
-        _ItemPoints(
-          color: ThemeColors.recentActivity['streaming'],
-          text: " 1 mês de streaming: 30000pts",
-        ),
-      ],
+    return InkWell(
+      onTap: () {
+        setState(() {});
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text("Pontos totais:"),
+          Text(
+            BankInherited.of(context).values.points.toString(),
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          const Padding(
+            padding: EdgeInsets.only(top: 8, bottom: 8),
+            child: ContentDivision(),
+          ),
+          const Text("Objetivos:"),
+          _ItemPoints(
+            color: ThemeColors.recentActivity['delivery'],
+            text: ' Entrega grátis: 1500pts',
+          ),
+          _ItemPoints(
+            color: ThemeColors.recentActivity['streaming'],
+            text: " 1 mês de streaming: 30000pts",
+          ),
+        ],
+      ),
     );
   }
 }
